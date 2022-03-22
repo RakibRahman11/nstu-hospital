@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import firebaseInit from "../Firebase/firebase.init";
 
@@ -19,6 +19,28 @@ const useFirebase = () => {
             });
     }
 
+    // Create new user
+    const newUser = (name, email, password) => {
+        console.log(name)
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const userInfo = { email, displayName: name }
+                setUser(userInfo)
+                console.log(userInfo)
+            })
+            .catch((error) => {
+            });
+    }
+
+    // Email Sign In
+    const userSignIn = (email, password) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+            })
+            .catch((error) => {
+                // const errorMessage = error.message;
+            });
+    }
 
     // Logout 
     const logOut = () => {
@@ -37,6 +59,8 @@ const useFirebase = () => {
     })
     return {
         user,
+        newUser,
+        userSignIn,
         googleSignIn,
         logOut
     }

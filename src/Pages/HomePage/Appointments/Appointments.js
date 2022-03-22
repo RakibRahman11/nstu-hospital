@@ -20,7 +20,7 @@ const Appointments = () => {
     };
     return (
         <Container sx={{ marginY: 5 }}>
-            <Typography variant="h5" sx={{textAlign:'center', fontWeight:700}} gutterBottom component="div">
+            <Typography variant="h5" sx={{ textAlign: 'center', fontWeight: 700 }} gutterBottom component="div">
                 Book an appointment
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)} style={{ paddingLeft: '25%' }}>

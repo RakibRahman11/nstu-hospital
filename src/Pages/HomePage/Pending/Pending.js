@@ -42,22 +42,33 @@ const Pending = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Your pending appointments
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        {myOrders.map((row) => (
-                            <TableRow
-                                key={row.name}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name} followed by
-                                </TableCell>
-                                <TableCell sx={{ color:'red' }} align="right">{row?.member}</TableCell>
-                            </TableRow>
-                        ))}
-                    </Typography>
+                    {
+                        myOrders[0] ?
+                            <div>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    Your pending appointments
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    {myOrders.map((row) => (
+                                        <TableRow
+                                            key={row.name}
+                                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                        >
+                                            <TableCell component="th" scope="row">
+                                                {row.name} followed by
+                                            </TableCell>
+                                            <TableCell sx={{ color: 'red' }} align="right">{row?.member}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                </Typography>
+                            </div>
+                            :
+                            <div>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    You don't have any pending appointment
+                                </Typography>
+                            </div>
+                    }
                 </Box>
             </Modal>
         </Container>
